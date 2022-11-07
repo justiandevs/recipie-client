@@ -1,7 +1,8 @@
 export default function Home() {
   return (
-    <main>
-      <h1 className="text-9xl">Recip.ie</h1>
-    </main>
+    <section className="bg-white p-8 rounded-lg shadow-sm">
+      <h1 className="text-4xl">Recip.ie</h1>
+      <p className="text-lg pt-2">A site for sharing your personal recipes.</p>
+    </section>
   )
 }
