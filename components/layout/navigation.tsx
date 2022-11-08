@@ -24,10 +24,13 @@ export default function Navigation() {
   }
 
   return (
-    <nav className="bg-white py-8 shadow-sm">
+    <nav className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 lg:px-0 text-lg flex justify-between flex-row items-center">
-        <div>
-          <Link href={"/"} className="text-indigo-600 text-xl font-semibold">Recip.ie</Link>
+        <div className="flex flex-row gap-8 items-center ">
+          <Link href={"/"} className="text-indigo-600 text-xl font-semibold py-8 border-b-2 border-white">Recip.ie</Link>
+          {authContext?.authState.token != '' &&
+            <Link href={"/dashboard"} className={`${router.asPath === '/dashboard' ? 'border-indigo-600 text-indigo-600' : 'border-white'} border-b-4 py-8`}>Dashboard</Link>
+          }
         </div>
         <div>
           {authContext?.authState.token === '' ?
@@ -35,7 +38,7 @@ export default function Navigation() {
               Sign-in
             </Link>
             :
-            <a onClick={() => logout()} className="px-4 font-semibold py-3 text-white bg-indigo-600 text-md rounded-lg transition duration-200 hover:bg-indigo-700">
+            <a onClick={() => logout()} className="cursor-pointer px-4 font-semibold py-3 text-white bg-indigo-600 text-md rounded-lg transition duration-200 hover:bg-indigo-700">
               Sign-out
             </a>
           }
