@@ -24,7 +24,7 @@ export default function Navigation() {
   }
 
   return (
-    <nav className="bg-white py-4 shadow-sm">
+    <nav className="bg-white py-8 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 lg:px-0 text-lg flex justify-between flex-row items-center">
         <div>
           <Link href={"/"} className="text-indigo-600 text-xl font-semibold">Recip.ie</Link>
