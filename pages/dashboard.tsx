@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {ProtectedRoute} from "../components/ProtectedRoute";
 import {AuthContext} from "../context/auth-context";
 
