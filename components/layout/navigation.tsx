@@ -2,18 +2,25 @@ import Link from "next/link";
 import React, {useEffect} from "react";
 import {AuthContext} from "../../context/auth-context";
 import {useRouter} from "next/router";
+import {api} from "../../utils/api";
 
 export default function Navigation() {
   const authContext = React.useContext(AuthContext);
   const router = useRouter();
 
   const logout = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userName');
-    authContext?.setAuthState();
-    router.push('/');
+    api.get('auth/logout')
+      .then((res) => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userName');
+        authContext?.setAuthState();
+        router.push('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   return (

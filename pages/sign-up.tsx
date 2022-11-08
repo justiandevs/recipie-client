@@ -21,7 +21,7 @@ export default function SignUp() {
     setError('');
     generateNewDeviceIdentifier();
 
-    api.post('http://localhost:4999/auth/signup', {
+    api.post('auth/signup', {
       ...data,
       identifier: getDeviceIdentifier()
     })
