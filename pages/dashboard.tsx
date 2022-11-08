@@ -1,11 +1,16 @@
-import {getSpecificKeyValueResult} from "../utils/localStorage";
+import React, {useEffect} from "react";
+import {ProtectedRoute} from "../components/ProtectedRoute";
+import {AuthContext} from "../context/auth-context";
 
 export default function Dashboard() {
+  const authContext = React.useContext(AuthContext);
+
   return (
-    <section className="bg-white rounded-lg shadow-sm p-8">
-      <h1 className="text-4xl">Dashboard</h1>
-      {/* TODO: implement user name */}
-      <p className={"text-lg pt-2"}>Hey, welcome {getSpecificKeyValueResult('userName')}. You are authenticated.</p>
-    </section>
+    <ProtectedRoute>
+      <>
+        <p>Hey</p>
+        <button onClick={() => authContext?.setAuthState()}>Submit</button>
+      </>
+    </ProtectedRoute>
   )
 }

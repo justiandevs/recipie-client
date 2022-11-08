@@ -1,8 +1,9 @@
-import {FormEvent, useState} from "react";
+import React, {FormEvent, useState} from "react";
 import {api} from "../utils/api";
 import {useForm} from "react-hook-form";
 import {generateNewDeviceIdentifier, getDeviceIdentifier} from "../utils/localStorage";
 import {useRouter} from "next/router";
+import {AuthContext} from "../context/auth-context";
 
 type FormData = {
   name: string;
@@ -11,6 +12,7 @@ type FormData = {
 }
 
 export default function SignUp() {
+  const authContext = React.useContext(AuthContext);
   const { register, handleSubmit, watch, formState: { errors} } = useForm<FormData>();
   const router = useRouter();
   const [error, setError] = useState<string>();
@@ -28,6 +30,7 @@ export default function SignUp() {
         localStorage.setItem('refreshToken', res.data.refreshToken);
         localStorage.setItem('userId', res.data.id);
         localStorage.setItem('userName', res.data.name);
+        authContext?.setAuthState();
         router.push('/dashboard');
       })
       .catch((err) => {
